@@ -60,12 +60,7 @@ public class DataController : ControllerBase
         }
         
         GPS data = gps.Payload.Data;
-        Console.WriteLine($"GPS: {data.Tag} {Converter(data.Position)}");
-        PositionGps positionGps = new PositionGps();
-        
-        positionGps.SavedPosition = Converter(data.Saved);
-        positionGps.Position = Converter(data.Position);
-        positionGps.OtherGps = data.Signals.Select(x => Converter(x.Position)).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
+        Console.WriteLine($"GPS: {data.Tag} {data.Position}");
 
         if (IsFileLocked(Config.PathGpsData))
         {
@@ -74,20 +69,11 @@ public class DataController : ControllerBase
 
         try
         {
-            System.IO.File.WriteAllText(Config.PathGpsData, JsonConvert.SerializeObject(positionGps), Encoding.Unicode);
+            System.IO.File.WriteAllText(Config.PathGpsData, JsonConvert.SerializeObject(data), Encoding.Unicode);
         }
         catch
         {
             // ignore
-        }
-
-        string Converter(List<int>? coors)
-        {
-            if (coors == null)
-            {
-                return "";
-            }
-            return $"({coors[0]}, {coors[1]}, {coors[2]})";
         }
     }
     
