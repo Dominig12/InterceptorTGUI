@@ -67,14 +67,14 @@ public class DataController : ControllerBase
         positionGps.Position = Converter(data.Position);
         positionGps.OtherGps = data.Signals.Select(x => Converter(x.Position)).Where(x => !string.IsNullOrWhiteSpace(x)).ToList();
 
-        if (IsFileLocked("GPSData.txt"))
+        if (IsFileLocked(Config.PathGpsData))
         {
             return;
         }
 
         try
         {
-            System.IO.File.WriteAllText("GPSData.txt", JsonConvert.SerializeObject(positionGps), Encoding.Unicode);
+            System.IO.File.WriteAllText(Config.PathGpsData, JsonConvert.SerializeObject(positionGps), Encoding.Unicode);
         }
         catch
         {
