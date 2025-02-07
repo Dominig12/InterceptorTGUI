@@ -1,14 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
     <PropertyGroup>
-        <TargetFramework>net7.0</TargetFramework>
+        <TargetFramework>net8.0</TargetFramework>
         <Nullable>enable</Nullable>
         <ImplicitUsings>enable</ImplicitUsings>
         <OutputType>Exe</OutputType>
-        <PublishSingleFile>true</PublishSingleFile> <!-- Включение публикации в один файл -->
-        <RuntimeIdentifier>win-x64</RuntimeIdentifier> <!-- Укажи платформу: win-x64, linux-x64, osx-x64 и т.д. -->
-        <SelfContained>true</SelfContained> <!-- Включение .NET Runtime в исполняемый файл -->
-        <PublishTrimmed>true</PublishTrimmed> <!-- Опционально: уменьшение размера файла через тримминг -->
     </PropertyGroup>
 
     <ItemGroup>

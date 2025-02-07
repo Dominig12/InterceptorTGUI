@@ -24,4 +24,7 @@ public class GPS
 
     [JsonPropertyName("signals")]
     public List<Signal> Signals;
+
+    [JsonPropertyName("crew_signals")]
+    public List<Signal> CrewSignals;
 }
